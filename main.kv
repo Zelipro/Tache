@@ -1,0 +1,113 @@
+#:import NoTransition kivy.uix.screenmanager 
+MDBoxLayout:
+    orientation: 'vertical'
+    id: Cont1
+    spacing:10
+    MDFloatLayout:
+        size_hint:(1,.1)
+        MDTopAppBar:
+            id:TopBar
+            title: "Travail a faire"
+            left_action_items:[["arrow-left" ,lambda x : app.Back()]]
+            right_action_items:[["weather-sunny" , lambda x : app.ChangeMode()]]
+            pos_hint:{"top":1}
+    
+    MDScreenManager:
+        id:cr
+        #transition: NoTransition()
+        MDScreen:
+            name:'Page_1'
+            MDBoxLayout:
+                id:Page1
+                orientation: 'vertical'
+                spacing:20
+                size_hint:(None,None)
+                height: 100
+                width: 250
+                pos_hint:{"center_x":.5,"center_y":.5}
+                MDLabel:
+                    id:Lab_iden
+                    color:(0,0,0,1)
+                    halign:"center"
+                    bold:True
+                    size_hint_y:None
+                    height:50
+                    pos_hint:{"center_y":.5}
+                    
+                MDBoxLayout:
+                    id:But_cont
+                    orientation: 'horizontal'
+                    size_hint:(None,None)
+                    width: 338
+                    height:100
+                    spacing:10
+                    padding: ('10dp', '10dp', '10dp', '10dp')
+                    pos_hint:{"center_x":.5,"center_y":.5}
+
+                    MDRaisedButton:
+                        text:"[b]Voir les Tâche des \n Jours Precedentes[/b]"
+                        makup:True
+                        md_bg_color : (0,1,0,1)
+                        pos_hint:{"center_x":.5,"center_y":.5}
+                        text_color:(0,0,0,1)
+                        on_press: app.Last_work(self)
+                    MDRaisedButton:
+                        text:"[b]Creer une nouvelle \n section[/b]"
+                        makup:True
+                        md_bg_color : (0,1,0,1)
+                        pos_hint:{"center_x":.5,"center_y":.5}
+                        text_color:(0,0,0,1)
+                        on_release: app.New_Section(self)
+        MDScreen:
+            name:"Page_2"
+            MDBoxLayout:
+                orientation:'vertical'
+                size_hint_x:None
+                width:150
+                pos_hint:{"center_x":.5}
+                MDRaisedButton:
+                    id:But1_Page2
+                    text: "[b]Ajouter une Tâche[/b]"
+                    makup:True
+                    pos_hint:{"center_x":.5}
+                    md_bg_color:(0,1,0,1)
+                    on_release:app.Add_Tache(self)
+                MDScrollView:
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    MDBoxLayout:
+                        id:Page_2_Cont
+                        pos_hint:{"center_x":.5}
+                        orientation:"vertical"
+                        adaptive_height:True
+                MDBoxLayout:
+                    id:Conti_top_bar2
+                    orientation:"vertical"
+                    MDTopAppBar:
+                        id:BottomBar
+                        left_action_items:[["information" ,lambda x : app.information()]]
+                        size_hint_x:None
+                        width:TopBar.width
+                        pos_hint:{"bottom":1,"center_x":.5}
+
+        MDScreen:
+            name:"Page_3"
+            MDBoxLayout:
+                id:Page_3_Cont
+                orientation:"vertical"
+                size_hint:(None,None)
+                width:300
+                height:150
+                pos_hint:{"center_x":.5,"center_y":.5}
+                MDScrollView:
+                    do_scroll_x:True
+                    do_scroll_y:False
+                    MDBoxLayout:
+                        id:Page_3_Cont_2
+                        adaptive_width:True
+                        orientation: 'horizontal'
+                        spacing:10
+                        pos_hint:{"center_x":.5}
+                        
+
+
